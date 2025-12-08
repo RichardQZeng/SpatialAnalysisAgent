@@ -796,22 +796,35 @@ class SpatialAnalysisAgentDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
             if model_name == 'gpt-5.1':
                 # GPT-5.1 supports: none, low, high
                 effort_options = ['none', 'low', 'high']
-                default_effort = 'none'
-            else:
+                default_effort = 'low'
+            elif model_name == 'gpt-5':
                 # GPT-5 supports: minimal, low, medium, high
                 effort_options = ['minimal', 'low', 'medium', 'high']
                 default_effort = 'minimal'
 
             # Update the combo box items
-            current_text = self.reasoningEffortComboBox.currentText()
+            # current_text = self.reasoningEffortComboBox.currentText()
             self.reasoningEffortComboBox.clear()
             self.reasoningEffortComboBox.addItems(effort_options)
+            # Always set to default when model is selected
+            self.reasoningEffortComboBox.setCurrentText(default_effort)
 
-            # Set appropriate default if current selection is invalid for this model
-            if current_text in effort_options:
-                self.reasoningEffortComboBox.setCurrentText(current_text)
-            else:
-                self.reasoningEffortComboBox.setCurrentText(default_effort)
+            # # Always set to default for gpt-5, preserve selection for gpt-5.1 if valid
+            # if model_name == 'gpt-5':
+            #     self.reasoningEffortComboBox.setCurrentText(default_effort)
+            # else:
+            #     # For other models, try to preserve current selection if valid
+            #     current_text = self.reasoningEffortComboBox.currentText()
+            #     if current_text in effort_options:
+            #         self.reasoningEffortComboBox.setCurrentText(current_text)
+            #     else:
+            #         self.reasoningEffortComboBox.setCurrentText(default_effort)
+
+            # # Set appropriate default if current selection is invalid for this model
+            # if current_text in effort_options:
+            #     self.reasoningEffortComboBox.setCurrentText(current_text)
+            # else:
+            #     self.reasoningEffortComboBox.setCurrentText(default_effort)
 
     def toggle_openai_key_field(self, model_name):
         """Enable or disable OpenAI key field based on model selection"""

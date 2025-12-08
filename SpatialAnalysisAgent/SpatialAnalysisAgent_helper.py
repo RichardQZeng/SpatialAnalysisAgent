@@ -95,16 +95,17 @@ def generate_task_name_with_model_provider(request_id, model_name, stream, task_
     messages=[
         {"role": "user", "content": prompt},
     ]
-    if reasoning_effort:
-        print(f"[DEBUG] generate_task_name: reasoning_effort = {reasoning_effort}")
+    # if reasoning_effort:
+    #     print(f"[DEBUG] generate_task_name: reasoning_effort = {reasoning_effort}")
     # Generate response using the provider
     kwargs = {}
     # Only pass reasoning_effort for GPT-5 models
     if reasoning_effort and model_name in ['gpt-5', 'gpt-5.1']:
         kwargs['reasoning_effort'] = reasoning_effort
-        print(f"[DEBUG] generate_task_name: reasoning_effort ENABLED for {model_name}")
-    elif reasoning_effort:
-        print(f"[DEBUG] generate_task_name: reasoning_effort IGNORED for {model_name} (not supported)")
+        # print(f"[DEBUG] generate_task_name: reasoning_effort ENABLED for {model_name}")
+    # elif reasoning_effort:
+        # print(f"[DEBUG] generate_task_name: reasoning_effort IGNORED for {model_name} (not supported)")
+
 
 
     return unified_llm_call(
@@ -1589,16 +1590,16 @@ def streaming_openai_response(response):
 
 def Query_tuning(request_id, Query_tuning_prompt_str, model_name, stream, reasoning_effort=None):
     """Return a fine-tuned prompt using the selected model."""
-    if reasoning_effort:
-        print(f"[DEBUG] select_source: reasoning_effort = {reasoning_effort}")
+    # if reasoning_effort:
+    #     print(f"[DEBUG] select_source: reasoning_effort = {reasoning_effort}")
 
     kwargs = {}
     # Only pass reasoning_effort for GPT-5 models
     if reasoning_effort and model_name in ['gpt-5', 'gpt-5.1']:
         kwargs['reasoning_effort'] = reasoning_effort
-        print(f"[DEBUG] select_source: reasoning_effort ENABLED for {model_name}")
-    elif reasoning_effort:
-        print(f"[DEBUG] select_source: reasoning_effort IGNORED for {model_name} (not supported)")
+        # print(f"[DEBUG] select_source: reasoning_effort ENABLED for {model_name}")
+    # elif reasoning_effort:
+    #     print(f"[DEBUG] select_source: reasoning_effort IGNORED for {model_name} (not supported)")
 
 
     return unified_llm_call(
