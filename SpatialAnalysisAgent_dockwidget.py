@@ -804,7 +804,7 @@ class SpatialAnalysisAgentDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
             elif model_name == 'gpt-5.2':
                 # GPT-5.2 supports: minimal, low, medium, high
                 effort_options = ['none', 'low','medium','high','xhigh']
-                default_effort = 'medium'
+                default_effort = 'low'
 
             # Update the combo box items
             # current_text = self.reasoningEffortComboBox.currentText()
